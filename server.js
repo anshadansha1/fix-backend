@@ -26,7 +26,9 @@ const BillSchema = new mongoose.Schema({
 });
 
 const Bill = mongoose.model("Bill", BillSchema);
-
+app.get("/", (req, res) => {
+  res.send("Fix and Drive Backend is running ✅");
+});
 // ✅ Save bill
 app.post("/save-bill", async (req, res) => {
   const bill = new Bill(req.body);
