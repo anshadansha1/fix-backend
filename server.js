@@ -8,8 +8,14 @@ app.use(cors());
 app.use(express.json());
 
 // 🔴 Replace this later with your MongoDB URL
-mongoose.connect("mongodb+srv://marshu817_db_user:Rd5XxGNKdhZMsd0a@cluster0.wlvlyyx.mongodb.net/?appName=Cluster0");
-
+// mongoose.connect("mongodb+srv://marshu817_db_user:Rd5XxGNKdhZMsd0a@cluster0.wlvlyyx.mongodb.net/?appName=Cluster0");
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => {
+    console.log("✅ MongoDB Connected");
+  })
+  .catch((err) => {
+    console.error("❌ MongoDB Error:", err);
+  });
 const BillSchema = new mongoose.Schema({
   customerName: String,
   phone: String,
